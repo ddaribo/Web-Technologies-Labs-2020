@@ -1,36 +1,3 @@
-<html>
-  <head>
-  <title>Creating a form exercise</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
-  <body>
-  <h1>Добавяне на избираема дисциплина</h1>
-    <form method="post" action="/index.php">
-      <label for="course-title">Име на курс</label>
-      <input type="text" id="course-title" name="title">
-
-      <label for="course-teacher">Преподавател</label>
-      <input type="text "id="course-teacher" name="teacher">  
-
-      <label for="course-description">Описание</label>
-      <input type="text "id="course-description" name="description">  
-
-      <label for="course-group">Група</label>
-      <select id="course-group" name="group">
-        <option value="1">М</option>
-        <option value="2" selected >ПМ</option>
-        <option value="3">ОКН</option>
-        <option value="4">ЯКН</option>
-      </select>
-
-      <label for="course-credits">Кредити</label>
-      <input type="number "id="course-credits" name="credits">  
-
-      <button> Submit </button>
-    </form>
-  </body>
-</html>
-
 <?php 
   $valid = array();
   $errors = array();
@@ -86,7 +53,7 @@
       }
 
       $credits = $_POST['credits'];
-      if(credits < 0) {
+      if($credits < 0) {
         $errors['credits'] = 'Броят кредити трябва да е цяло положително число';
         echo $errors['credits'];  
       }
