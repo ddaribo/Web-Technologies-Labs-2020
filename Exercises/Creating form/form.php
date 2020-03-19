@@ -1,65 +1,69 @@
 <?php 
+
   $valid = array();
   $errors = array();
-  if ($_POST) {
 
-    $title = $_POST['title'];
+  $titleLength = 150;
+  $teacherNameLength = 200;
+  $descriptionLength = 10;
+  $minCredits = 0;
+  $inputs = 5;
 
-    if (!$title) {
-      $errors['title'] = 'Името е задължително поле.';
-      echo $errors['title'];
-      } 
-      elseif (strlen($title) > 150) 
-      {
-        $errors['title'] = 'Името има максимална дължина 150 символа.'; echo $errors['title']; 
-      } 
-      else {
-        $valid['title'] = $title;   
-      }
+  function validate($input, &$valid, &$errors, $constraint = NULL){
+    $check = $_POST["$input"];
 
-    $teacher = $_POST['teacher'];
-    if (!$teacher) {
-      $errors['teacher'] = 'Името на преподавател е задължително поле.';echo $errors['teacher'];   
-      } 
-      elseif (strlen($teacher) > 200) 
-      {
-        $errors['teacher'] = 'Името на преподавател има максимална дължина 200 символа.';
-        echo $errors['teacher'];       
-      } 
-      else {
-        $valid['teacher'] = $teacher;   
+    if(!$check){
+      $errors[$input] = "$input е задължително поле.";
+      echo $errors[$input];
+      return;
+    }
+    elseif($input == "description"){
+      if(strlen($check) < $constraint){
+        $errors[$input] = "$input трябва да бъде с дължина поне $constraint символа";
+        echo $errors[$input];
+        return;
       }
+    }
+    elseif(strcmp($input, "credits") == 0){
+      if($check < $constraint){
+        $errors[$input] = "$input трябва да бъде цяло положително число";
+        echo $errors[$input];
+        return;
+      }
+    }
+    elseif($constraint && strlen($check) > $constraint){
+      $errors[$input] = "$input трябва да бъде с дължина не повече от $constraint символа";
+      echo $errors[$input];
+      return;
+    }
 
-      $description = $_POST['description'];
-      if (!$description) {
-        $errors['description'] = 'Описанието на дисциплината е задължително поле.';
-        echo $errors['description'];   
-      } 
-      elseif (strlen($description) < 10) 
-      {
-        $errors['description'] = 'Описанието на дисциплината има минимална дължина 10 символа.';
-        echo $errors['description'];  
-      } 
-      else {
-        $valid['description'] = $description;   
-      }
+    $valid[$input] = $check;
 
-      $group = $_POST['group'];
-      if(!$group) {
-        //it is filled with the first option by default, so can not be missing
-      }
-      else{
-        $valid['group'] = $group;
-      }
-
-      $credits = $_POST['credits'];
-      if($credits < 0) {
-        $errors['credits'] = 'Броят кредити трябва да е цяло положително число';
-        echo $errors['credits'];  
-      }
-      else{
-        $valid['credits'] = $credits;   
-      }
   }
 
-?>
+  if($_POST){
+    validate("title", $valid, $errors, $titleLength);
+    validate("teacher", $valid, $errors, $teacherNameLength);
+    validate("description", $valid, $errors, $descriptionLength);
+    validate("group", $valid, $errors);
+    validate("credits", $valid, $errors, $minCredits);
+  }
+
+  if(count($valid) == $inputs){
+    $filename = 'data.txt';
+    $fp = fopen($filename, 'a+');
+
+    $textData = "Име на предмет: " . $valid['title'] . "\n" .
+    "Име на преподавател: " . $valid['teacher'] . "\n" .
+    "Описание на предмет: " . $valid['description'] . "\n" .
+    "Група: " . $valid['group'] . "\n" .
+    "Кредити: " . $valid['credits'] . "\n" . "\n";
+
+    if(fwrite($fp, $textData)){
+      echo "Successfully saved the information!";
+      header( "refresh:2; url=form.html" );
+    }
+    
+    fclose($fp);
+  }
+  ?>
