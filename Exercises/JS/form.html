@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 1 - Validate form with JS</title>
+    <script src="form.js"></script>
+</head>
+
+<body>
+    <section>
+
+        <label id="errors"></label>
+
+        <fieldset>
+            <form method="POST" action="register.php" id="form" onsubmit="return validate()">
+                <label for="username">Потребителско име</label>
+                <input  type="text" id="username" 
+                        name="username" 
+                        minlength="3" 
+                        maxlength="10" 
+                        placeholder="Enter username" 
+                        required pattern="\w+"/>
+                
+                <label for="pass">Парола</label>
+                <input type="password" id="pass" 
+                       name="pass" 
+                       minlength="6" 
+                       placeholder="Enter password" 
+                       required/>
+        
+                <label for="passCheck">Потвърдете паролата</label>
+                <input type="password" id="passCheck" 
+                       name="passCheck" 
+                       minlength="6" 
+                       placeholder="Confirm password" 
+                       required/>
+        
+                <input type="submit"/>
+            </form>
+        </fieldset>
+    </section>
+</body>
+</html>
