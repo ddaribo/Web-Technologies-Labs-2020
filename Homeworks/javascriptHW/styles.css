@@ -1,0 +1,30 @@
+#register{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    margin: 0 auto;
+    padding: 1em 5em;
+    background-color: lightgoldenrodyellow;
+    border: 2px solid peachpuff;
+    color:indigo;
+    font-size: 1.5em;
+}
+
+label{
+    margin: 0.4em 0;
+}
+
+input{
+    height: 2.5em;
+}
+
+input[type="submit"]{
+    margin-top: 2em;
+}
+
+.successLabel{
+    color:lawngreen;
+}
+.errLabel{
+    color:firebrick;
+}

@@ -1,0 +1,168 @@
+body{
+    margin: 0;
+}
+
+.user-panel{
+    background-color: #ECECEC;
+    color: #324759;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 700px;
+    height: 470px;
+    border: 2px solid #324759;
+}
+
+h2{
+    font-weight: 600;
+    font-size: 1.7em;
+    margin-left: 0.6em;
+}
+
+p{
+    margin-left: 1em;
+}
+
+h3{
+    font-size: 1em;
+    text-transform: uppercase;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+}
+
+.form-inputs{
+    width: 50%;
+    padding-left: 1em;
+    margin-right: 1em;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+}
+
+form input{
+    height: 2.5em;
+    margin-bottom: 1em;
+    width: 100%;
+    font-size: 1em;
+}
+
+button{
+  height: 2.5em;
+  padding: 0px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1em;
+}
+
+#register button{
+    background-color: #ECECEC;
+    border: 3px solid #324759;
+    color: #324759;
+    width: 52%;
+    margin-left: 50%;
+}
+
+.form-inputs:nth-child(2){
+    background-color: #324759;
+    color: white;
+}
+
+.submit-sign-in{
+    display: flex;
+    flex-direction: row;
+}
+
+/*check box styling*/
+.custom-checkbox {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+  }
+
+  .custom-checkbox input {
+    opacity: 0;
+    height: 0;
+    width: 0;
+  }
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    border: 3px solid white;
+  }
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .custom-checkbox input:checked ~ .checkmark:after {
+    display: block;
+    width: 50%;
+  }
+  
+  .custom-checkbox .checkmark:after {
+    left: 3px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 4px 4px 0;
+    transform: rotate(30deg);
+  }
+
+  /*end of checkbox styles*/
+
+  .submit-sign-in button{
+    background-color: #324759;
+    border: 3px solid #ECECEC;
+    color: #ECECEC;
+  }
+  
+  #button-and-pass-link{
+      display: flex;
+      flex-direction: column;
+      width: 70%;
+      margin-left: 3.5em;
+  }
+
+  a{
+      color: #ECECEC;
+      font-size: 0.8em;
+      margin-top: 0.4em;
+      margin-left: 0.7em;
+  }
+
+  /*hover effects*/
+  #register button:hover{
+    background-color: #324759;
+    color: #ECECEC;
+  }
+
+  .submit-sign-in button:hover{
+    color: #324759;
+    background-color: #ECECEC;
+  }
+
+  @media only screen and (max-width: 710px){
+    .container{
+      flex-direction: column;
+    }
+    .user-panel{
+      height: 120vh;
+    }
+    .container .form-inputs:nth-child(2){
+      margin-top: 3em;
+      height: 43vh;
+    }
+  }
